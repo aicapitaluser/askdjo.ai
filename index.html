@@ -493,6 +493,8 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;background:radial-gradi
 .pay li{font:400 14px/1.4 Inter;padding-left:20px;position:relative}
 .pay li:before{content:'';position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px var(--lime)}
 @media (max-width:1100px){.pay{grid-template-columns:1fr}}
+
+.whynote{text-align:center;max-width:640px;margin:34px auto 0;font:300 17px/1.65 Inter;color:var(--mut)}
 </style></head><body><nav class="s-nav" aria-label="Main">
   <a href="#top" class="wm" aria-label="askdjo.ai home">askdjo<i>.</i>ai</a>
   <div class="lk"><a href="#offers">Offers</a><a href="#map">Market map</a><a href="#process">Process</a><a href="#why">Why us</a></div>
@@ -601,7 +603,7 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;background:radial-gradi
     <div class="r"><b>Offers, posts and video</b><span>Design and video tools, made by hand</span><span>Generated from one brief, on brand</span></div>
     <div class="r"><b>Market data and reports</b><span>Data feeds plus hours in spreadsheets</span><span>Price per sqft, verdicts, reports on demand</span></div>
   </div>
-  <div style="text-align:center;margin-top:30px"><button class="s-btn" data-demo="cost" type="button"><span>Run your own numbers</span><i class="ar">&rarr;</i></button></div>
+  <p class="whynote">Most setups pay every month for seats, tiers and features that never get used. With askdjo.ai you pay only for what you switch on.</p>
 </div></section>
 
 <section class="sec" id="start"><div class="wrap">
@@ -1147,22 +1149,6 @@ DEMOS.dash = { k: 'Service 12 \u00b7 In-house tools & control dashboard', t: 'Yo
   draw();
 } };
 
-/* ================= 13 REPLACE THE STACK ================= */
-DEMOS.stack = { k: 'Replace the stack', t: 'Cost, use and control', btn: 'Try the cost calculator', render: function (root) {
-  var items = [['Website builder and hosting', 300], ['CRM seats', 900], ['Instagram DM automation tool', 350], ['Design and presentation tool', 250], ['Video creation tool', 300], ['Data and report subscriptions', 600], ['Automation connectors', 250]];
-  var st = { v: items.map(function (i) { return i[1]; }), build: 25000, run: 600 };
-  root.innerHTML = '<div class="two" style="grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)"><div class="dm-card"><h4>What you pay each month today (AED)</h4>' + items.map(function (it, i) { return '<label class="dm-fld" style="display:flex;align-items:center;gap:10px;margin-bottom:6px"><span style="flex:1;margin:0">' + it[0] + '</span><input data-i="' + i + '" type="number" min="0" step="50" value="' + it[1] + '" style="width:110px"></label>'; }).join('') + '<h4 style="margin-top:14px">In-house version</h4><label class="dm-fld" style="display:flex;align-items:center;gap:10px;margin-bottom:6px"><span style="flex:1;margin:0">One-time build (AED)</span><input id="sB" type="number" min="0" step="1000" value="25000" style="width:110px"></label><label class="dm-fld" style="display:flex;align-items:center;gap:10px;margin:0"><span style="flex:1;margin:0">Running costs per month (AED)</span><input id="sR" type="number" min="0" step="50" value="600" style="width:110px"></label><p class="dm-note">These numbers are examples. Replace them with what you really pay and with the quote you receive.</p></div><div><div class="dm-card" id="sOut"></div></div></div>';
-  function draw() {
-    var m = st.v.reduce(function (a, b) { return a + (+b || 0); }, 0), pts = [0, 6, 12, 18, 24, 30, 36], cur = pts.map(function (k) { return m * k; }), inh = pts.map(function (k) { return st.build + st.run * k; }), mx = Math.max.apply(null, cur.concat(inh).concat([1]));
-    var diff = m - st.run, be = diff > 0 ? Math.ceil(st.build / diff) : null, sav = cur[6] - inh[6];
-    var W = 420, H = 190, x = function (i) { return 30 + i * (W - 50) / 6; }, y = function (v) { return H - 24 - v / mx * (H - 44); };
-    var line = function (a, c) { return '<polyline fill="none" stroke="' + c + '" stroke-width="3" stroke-linejoin="round" points="' + a.map(function (v, i) { return x(i) + ',' + y(v); }).join(' ') + '"/>'; };
-    $('#sOut', root).innerHTML = '<h4>Cumulative cost over 3 years</h4><svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;height:auto" role="img" aria-label="Cumulative cost, subscriptions versus in-house">' + [0, 1, 2, 3].map(function (g) { var v = mx * g / 3; return '<line x1="30" x2="' + (W - 20) + '" y1="' + y(v) + '" y2="' + y(v) + '" stroke="#e6e0d3"/><text x="26" y="' + (y(v) + 3) + '" text-anchor="end" font-size="9" fill="#6b7280" font-family="Inter">' + (v >= 1e6 ? (v / 1e6).toFixed(1) + 'M' : Math.round(v / 1000) + 'k') + '</text>'; }).join('') + pts.map(function (k, i) { return '<text x="' + x(i) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="9" fill="#6b7280" font-family="Inter">' + (k ? k + ' mo' : 'Start') + '</text>'; }).join('') + line(cur, '#C0353A') + line(inh, '#12805a') + '<circle cx="' + x(6) + '" cy="' + y(cur[6]) + '" r="4" fill="#C0353A"/><circle cx="' + x(6) + '" cy="' + y(inh[6]) + '" r="4" fill="#12805a"/></svg><div style="font-size:12px;margin:2px 0 10px"><span style="color:#C0353A">&#9632;</span> Subscriptions &nbsp; <span style="color:#12805a">&#9632;</span> In-house</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px"><div style="background:#faf7f0;border-radius:8px;padding:10px"><div class="sm">Subscriptions / 3 years</div><b>' + aed(cur[6]) + '</b></div><div style="background:#faf7f0;border-radius:8px;padding:10px"><div class="sm">In-house / 3 years</div><b>' + aed(inh[6]) + '</b></div><div style="background:' + (sav > 0 ? '#e5f6ee' : '#fde4e4') + ';border-radius:8px;padding:10px"><div class="sm">Difference</div><b style="color:' + (sav > 0 ? '#12805a' : '#C0353A') + '">' + (sav > 0 ? 'Save ' : 'Extra ') + aed(Math.abs(sav)) + '</b></div></div><p style="margin-top:12px;font-size:14px;line-height:1.55">' + (be ? 'The in-house build pays for itself after about <b>' + be + ' months</b>.' : 'With these numbers the in-house version does not pay back. Lower the running cost or raise the subscriptions.') + '</p><div style="margin-top:12px;border-top:1px solid #e6e0d3;padding-top:10px;font-size:13px;line-height:1.7"><b>Control you gain:</b> your data stays with you, your brand on every screen, no per-seat fees, change anything without waiting for a vendor.</div>';
-  }
-  bind(root, 'input', function (e) { var t = e.target; if (t.dataset.i != null) st.v[+t.dataset.i] = +t.value || 0; else if (t.id === 'sB') st.build = +t.value || 0; else if (t.id === 'sR') st.run = +t.value || 0; else return; draw(); });
-  draw();
-} };
-
 })();
 
 /* ===== Composite offers: several tools merged into one demo each ===== */
@@ -1264,7 +1250,6 @@ D.crm = { k: 'Offer 05 · Agent CRM + My Day', t: 'Pipeline, matching and your d
 D.market = { k: 'Offer 06 · Market Desk', t: 'Price per sqft, verdicts and reports', render: function (r) { tabbed(r, [{ label: 'Market explorer', render: via('market') }, { label: 'Is my listing priced right?', render: via('watch') }]); } };
 D.content = { k: 'Offer 07 · Content Studio', t: 'Offers, decks, posts and stories', render: function (r) { via('mat')(r); } };
 D.video = { k: 'Offer 08 · Video Studio', t: 'From a unit to a ready video', render: function (r) { via('video')(r); } };
-D.cost = { k: 'Why deal with us', t: 'Your cost, use and control', render: function (r) { via('stack')(r); } };
 })();
 
 /* Market pulse: dot-matrix columns, animated, by area */
