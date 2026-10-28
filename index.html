@@ -481,6 +481,18 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;background:radial-gradi
 .dm-body :is(.mk,.ph,.wd-frame) .tag.b{background:#e3ecfd;color:#2456c4}
 .dm-body :is(.mk,.ph,.wd-frame) .tag.o{background:#ffe9df;color:#c2410c}
 .dm-body :is(.mk,.ph,.wd-frame) .tag.n{background:#e6ebf1;color:#41546a}
+
+.pay{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:50px}
+.pay .glass{padding:30px;border-radius:28px;position:relative;display:flex;flex-direction:column}
+.pay .hl{box-shadow:inset 0 1px 0 rgba(198,255,67,.8),inset 0 0 0 1px rgba(198,255,67,.4),0 40px 90px -30px #000,0 0 90px -20px rgba(198,255,67,.25)!important}
+.pay .pn{position:absolute;right:24px;top:22px;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font:600 12px 'DM Mono';color:#0b0b0b;background:var(--lime);box-shadow:0 0 18px rgba(198,255,67,.5)}
+.pay .eb{color:var(--lime)}
+.pay h3{font:300 30px/1.05 var(--ff);letter-spacing:-.05em;margin-top:22px}
+.pay p{font:300 14.5px/1.6 Inter;color:var(--mut);margin-top:12px}
+.pay ul{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:9px;flex:1}
+.pay li{font:400 14px/1.4 Inter;padding-left:20px;position:relative}
+.pay li:before{content:'';position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px var(--lime)}
+@media (max-width:1100px){.pay{grid-template-columns:1fr}}
 </style></head><body><nav class="s-nav" aria-label="Main">
   <a href="#top" class="wm" aria-label="askdjo.ai home">askdjo<i>.</i>ai</a>
   <div class="lk"><a href="#offers">Offers</a><a href="#map">Market map</a><a href="#process">Process</a><a href="#why">Why us</a></div>
@@ -598,6 +610,12 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;background:radial-gradi
     <div class="glass hl"><span class="tag">START HERE</span><h3>Starter</h3><p>Your first setup: be online, answer fast, never lose a lead.</p><ul><li>Website &amp; Listings Hub</li><li>Lead Capture: Ads, Social &amp; Portals</li><li>AI Sales Assistant</li><li>Agent CRM + My Day</li></ul></div>
     <div class="glass"><h3>Growth</h3><p>Everything in Starter, plus the edge: price right and look premium.</p><ul><li>Market Desk with owner and investor reports</li><li>Content Studio</li><li>Database reactivation campaign</li><li>Monthly tune-up</li></ul></div>
     <div class="glass"><h3>Full system</h3><p>All eight offers, trained agents and video, under your brand.</p><ul><li>Custom AI Agents, built and trained</li><li>Video Studio</li><li>Viewing and offer automation</li><li>Priority support</li></ul></div>
+  </div>
+  <div class="sh" style="margin-top:90px"><span class="eb">How you pay</span><h2>Three ways. <span class="acc">Your choice.</span></h2><p>Pick what fits your stage. You can switch later, and the quote is fixed before we start.</p></div>
+  <div class="pay">
+    <div class="glass"><span class="pn">A</span><span class="eb">One-time launch</span><h3>Built once, yours.</h3><p>We build and launch your setup for a single fee. It is yours to keep and run.</p><ul><li>One fixed price for the build</li><li>Hand-over and a short walkthrough</li><li>Optional support, only when you need it</li></ul></div>
+    <div class="glass hl"><span class="pn">B</span><span class="eb">Build + monthly care</span><h3>Built, then looked after.</h3><p>The same build, plus a monthly plan where we keep it running and improving.</p><ul><li>Monthly tune-ups and new templates</li><li>Agents retrained as your listings change</li><li>Priority support and a monthly report</li></ul></div>
+    <div class="glass"><span class="pn">C</span><span class="eb">Tool subscription</span><h3>We provide it. You pay monthly.</h3><p>No build fee. You use our tools and pay each month, based on how many users you have and which services you switch on.</p><ul><li>Pay per user and per service</li><li>Add or remove services any month</li><li>Start in days, cancel when you like</li></ul></div>
   </div>
 </div></section>
 
